@@ -29,18 +29,6 @@ def user_directoryfile_path(instance, filename):
 	return 'user_{0}/files/{1}'.format(instance.user.id, filename)
 
 
-class Contactos(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	fecha = models.DateTimeField(default=timezone.now)
-	nombre = models.CharField(max_length=100, null=True, blank=True)
-	email1 = models.EmailField(null=True, blank=True)
-	tel1 = models.CharField(max_length=40)
-	tel2 = models.CharField(max_length=40)
-	direccion = models.CharField(max_length=200)
-
-	def __unicode__(self):
-		return '%s' % (self.nombre)
-
 class Perfil(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	edad = models.IntegerField(blank=True, null=True)
@@ -62,117 +50,12 @@ class Perfil(models.Model):
 	class Meta:
 		verbose_name_plural = "Perfiles"
 
-def validar_carta(value):
-  import os
-  ext = os.path.splitext(value.name)[1]
-  valid_extensions = ['.pdf','.doc','.docx','.jpg']
-  if not ext in valid_extensions:
-	raise ValidationError(u'Archivo no soportado!')
-	
-class Perfil_carta(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	fecha = models.DateTimeField(default=timezone.now)
-	contenido = models.TextField(max_length=1000, blank=True, null=True)
-	contacto = models.ForeignKey(Contactos, blank=True, null=True )
-	terminado = models.BooleanField(default=False) # poner true cuando se guarda
-
-	def __unicode__(self):
-		return '%s - %s' % (self.user, self.fecha)
-
-	class Meta:
-		verbose_name_plural = "Cartas"
-
-class Perfil_carta_archivo(models.Model):
-	user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True,)
-	carta = models.ForeignKey(Perfil_carta, blank=True, null=True)
-	slug = models.SlugField(max_length=500, blank=True, null=True)
-	archivo = models.FileField(upload_to = user_directoryfile_path, null=True, blank=True)
-
-	def __unicode__(self):
-		return self.archivo.name
-
-	@models.permalink
-	def get_absolute_url(self):
-		return ('editar_carta', )
-
-	def save(self, *args, **kwargs):
-		self.slug = self.archivo.name
-		super(Perfil_carta_archivo, self).save(*args, **kwargs)
-
-	def delete(self, *args, **kwargs):
-		#"""delete -- Remove to leave file."""
-		self.archivo.delete(False)
-		super(Perfil_carta_archivo, self).delete(*args, **kwargs)
-
-
-
-def validar_audio(value):
-  import os
-  ext = os.path.splitext(value.name)[1]
-  valid_extensions = ['.wav','.mp3','.mp4']
-  if not ext in valid_extensions:
-	raise ValidationError(u'Archivo no soportado!')
-
-class Perfil_audio(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	fecha = models.DateTimeField(default=timezone.now)
-	archivo = models.FileField(upload_to = user_directoryfile_path, null=True, blank=True, validators=[validar_audio])
-	email = models.EmailField(null=True, blank=True)
-	tel1 = models.CharField(max_length=40)
-	tel2 = models.CharField(max_length=40)
-	terminado = models.BooleanField(default=False) # poner true cuando se guarda
-
-	def __unicode__(self):
-		return '%s - %s' % (self.user, self.fecha)
-
-	class Meta:
-		verbose_name_plural = "Audios"
-
-def validar_video(value):
-  import os
-  ext = os.path.splitext(value.name)[1]
-  valid_extensions = ['.3gp','.avi','.mp4']
-  if not ext in valid_extensions:
-	raise ValidationError(u'Archivo no soportado!')
-
-class Perfil_video(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	fecha = models.DateTimeField(default=timezone.now)
-	archivo = models.FileField(upload_to = user_directoryfile_path, null=True, blank=True, validators=[validar_video])
-	nombre = models.CharField(max_length=100, null=True, blank=True)
-	email = models.EmailField(null=True, blank=True)
-	tel1 = models.CharField(max_length=40)
-	tel2 = models.CharField(max_length=40)
-	direccion = models.CharField(max_length=200)
-	formato_options = (
-		(1, 'Digital'),
-		(2, 'USB'),
-		(3, 'CD'),
-		(4, 'DVD'),
-		)
-	formato = models.IntegerField(choices=formato_options, blank=True, null=True)
-	terminado = models.BooleanField(default=False) # poner true cuando se guarda
-
-	def __unicode__(self):
-		return '%s - %s' % (self.user, self.fecha)
-
-	class Meta:
-		verbose_name_plural = "Videos"
 
 class Activar_cuenta(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	clave = models.CharField(max_length=40, null=True, blank=True)
 	uso = models.BooleanField(default=False)
 	email = models.EmailField(null=True, blank=True)
-
-class conteo_mensajes(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	carta = models.IntegerField(default=0)
-	audio = models.IntegerField(default=0)
-	video = models.IntegerField(default=0)
-	carta_extra = models.IntegerField(default=0)
-	audio_extra = models.IntegerField(default=0)
-	video_extra = models.IntegerField(default=0)
 
 
 # ------------------------------------------------------

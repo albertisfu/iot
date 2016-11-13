@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %} Detalle del vuelo {% endblock %}
+
+{% block content %}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-md-10">
+                    <h2>Detalle del vuelo {{proddet.descripcion}}</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/monitoreo/zonas/">Zonas</a>
+                        </li>
+                        <li class="active">
+                            <strong>Detalle del vuelo</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+
+<div class="wrapper wrapper-content">
+<div class="wrapper wrapper-content animated fadeInRight white-bg dashboard-header">
+
+<div class="panel panel-info">
+<div class="panel-heading"> <i class="fa fa-info-circle"></i>
+	Información
+</div>
+<div class="panel-body">
+
+	<div class="row">
+		<div class="col-md-5">
+			<dl class="dl-horizontal">
+
+				<dt>Descripcion del vuelo:</dt>
+				<dd>{{proddet.descripcion}}</dd>
+				<dt>Fecha:</dt>
+				<dd>{{proddet.fecha}}</dd>
+                <dt>Dispositivo:</dt>
+                <dd>{{proddet.dispositivo}}</dd>
+                <dt>Zona:</dt>
+                <dd>{{proddet.zona}}</dd>
+				
+
+			</dl>
+		</div>
+
+
+        <div class="col-md-7">
+            <dl class="dl-horizontal">
+<h2>Variables</h2>
+               <dd>
+                {%for dr in proddet.dispositivo.variables.all %}
+                <p><a href="{% url 'varvuelodetalle' vuelo=proddet.pk variable=dr.pk %}">{{dr}}</a></p>
+                {% endfor %}</dd>
+                
+
+            </dl>
+        </div>
+
+	</div>
+
+</div>
+
+</div>
+
+<a href="javascript:history.back();">
+<button class="btn btn-w-m btn-danger" type="submit"> <i class="fa fa-arrow-left"></i>
+	Regresar
+</button>
+</a>
+
+
+
+</div>
+</div>
+{% endblock %}

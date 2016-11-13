@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %} Agregar Dispositivo {% endblock %}
+
+{% block content %}
+
+<script src="{% static "js/jquery.validate.min.js" %}"></script>
+<script src="{% static "js/additional-methods.js" %}"></script>
+<script src="{% static "js/autoNumeric.js" %}" type="text/javascript"></script>
+
+
+
+<link href="{% static "selectize/css/selectize.default.css" %}" rel="stylesheet">
+<script type="text/javascript" src="{% static "selectize/jquery.min.js"%}"></script>
+<script type="text/javascript" src="{% static "selectize/selectize.min.js"%}"></script>
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-md-10">
+                    <h2>Agregar Dispositivos</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/dispositivos/dispositivos/">Dispositivos</a>
+                        </li>
+                        <li class="active">
+                            <strong>Agregar nuevo dispositivo</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+
+<div class="wrapper wrapper-content">
+<div class="wrapper wrapper-content animated fadeInRight white-bg dashboard-header">
+
+<div class="panel panel-success">
+	<div class="panel-heading">Datos de nueva Dispositivo</div>
+	<div class="panel-body">
+		<p>
+		<div class="col-md-6">
+			<div class="doctorformstyle">
+
+ <form method="POST" class="post-form" id="adddevice">{% csrf_token %}
+            {{ form.as_p }}
+            
+
+        </div>
+</div>
+	<div class="col-md-6 text-center">
+	 <h2><strong>Acciones:</strong></h2>
+<a href="/dispositivos/dispositivos/" class="btn btn-lg btn-danger m-t-n-xs button280"><i class="fa fa-times"></i>&nbsp;Cancelar</a>
+<p></p>
+<button type="submit" class="btn btn-lg btn-primary m-t-n-xs button280"><i class="fa fa-save"></i>&nbsp;Guardar nuevo dispositivo</button>
+
+            
+        </form>
+	</div>
+		</p>
+	</div>
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+$('#id_variables').selectize();
+</script>
+
+
+
+<script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+ ignore: [],
+});
+
+jQuery(document).ready(function(){
+
+    $("#adddevice").validate({
+        rules: {
+            nombre: {
+                required: true
+            },
+            descripcion: {
+                required: false
+            }
+            
+
+        },
+        messages: {
+            nombre: "Nombre obligatorio",
+        
+        },
+
+submitHandler: function(form) {
+                    form.submit();
+                }
+
+    });
+
+});
+</script>
+
+<script src="{% static "js/val.messages.js" %}"></script>
+
+
+{% endblock %}

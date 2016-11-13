@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mensajes | {% block title %} {% endblock %}</title>
+    <title> Plataforma Monitoreo| {% block title %} {% endblock %}</title>
 
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
@@ -31,7 +31,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element"> <span>
-                        <!-- <img alt="image" class="text-center" src="{% static "img/logo.png" %}" style="width:80px;"/> --><h2 style="display:inline; font-size:18px;font-weight:700;color:#ffffff;">Mensajes</h2>
+                        <!-- <img alt="image" class="text-center" src="{% static "img/logo.png" %}" style="width:80px;"/> --><h2 style="display:inline; font-size:18px;font-weight:700;color:#ffffff;">Plataforma Monitoreo</h2>
                            
                              </span>
 
@@ -69,52 +69,31 @@
                         <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">INICIO</span> </a>
                     </li>
 
-                      <!-- Elemento -->
-                    {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
-                    <li id="mainop0">
-                        <a href="#"><i class="fa fa-group"></i> <span class="nav-label">AGENDA</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="{% url 'lista_contactos' %}">Ver Contactos</a></li>
-                            <li><a href="{% url 'agregar-contacto' %}">Agregar Contacto</a></li>
+                
 
-                        </ul>
-                    </li>
-                    {% endif %}
-
-                    <!-- Elemento Catalogo menu lateral-->
-                    {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
-                    <li id="mainop">
-                        <a href="#"><i class="fa fa-envelope-o"></i> <span class="nav-label">CARTAS</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="{% url 'lista_cartas' %}">Ver Cartas</a></li>
-                            <li><a href="{% url 'crear_carta' %}">Agregar Carta</a></li>
-
-                        </ul>
-                    </li>
-                    {% endif %}
-                    <!-- Elemento Entrada menu lateral-->
-                    {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
-                    <li id="mainop2">
-                        <a href="#"><i class="fa fa fa-headphones"></i> <span class="nav-label">AUDIO</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="{% url 'lista_audio' %}">Ver Audio</a></li>
-                            <li><a href="{% url 'subir_audio' %}">Agregar Audio</a></li>
-                        </ul>
-                    </li>
-                    {% endif %}
-                    <!-- Elemento cobro menu lateral-->
+                     <!-- Elemento cobro menu lateral-->
                     {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
                     <li id="mainop3">
-                        <a href="#"><i class="fa fa-video-camera"></i> <span class="nav-label">VIDEO</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">DISPOCITIVOS</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="{% url 'lista_video' %}">Ver video</a></li>
-                            <li><a href="{% url 'subir_video' %}">Agregar video</a></li>
-
-
+                            <li><a href="{% url 'ver_dispositivos' %}">Ver Dispositivos</a></li>
+                             <li><a href="{% url 'agregar_dispositivo' %}">Agregar Dispositivo</a></li>
                         </ul>
                     </li>
                     {% endif %}
-                    <!-- Elemento cobro menu lateral-->
+
+                     <!-- Elemento cobro menu lateral-->
+                    {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
+                    <li id="mainop3">
+                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">MONITOREO</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="{% url 'ver_zonas' %}">Ver Zonas</a></li>
+                             <li><a href="{% url 'agregar_zona' %}">Agregar Zona</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+   <!-- Elemento cobro menu lateral-->
                     {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
                     <li id="mainop5">
                         <a href="#"><i class="fa fa-user"></i> <span class="nav-label">CUENTA</span><span class="fa arrow"></span></a>
@@ -123,6 +102,8 @@
                         </ul>
                     </li>
                     {% endif %}
+
+
 
                      <!-- Elemento cobro menu lateral-->
                     {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
@@ -204,7 +185,7 @@
                 <div class="pull-right">
 
                 </div>
-                <div> <strong>Copyright</strong> Ticsup &copy; 2016
+                <div> 
                 </div>
             </div>
 

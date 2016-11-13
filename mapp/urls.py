@@ -20,8 +20,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include ('usuario.urls')),
     url(r'', include ('administrar.urls')),
-    url(r'^upload/', include('fileupload.urls')),
-    url(r'', include ('paquetes.urls')),
+    url(r'', include ('monitoreo.urls')),
+    url(r'', include ('dispositivos.urls')),
 ]
 
 from django.conf import settings
