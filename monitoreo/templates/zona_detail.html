@@ -42,17 +42,82 @@
 				
 
 			</dl>
+
+                <a class="btn btn-success btn-facebook" href="{% url 'agregar_vuelo' pk=proddet.pk %}">
+                    <i class="fa fa-plus"> </i> Agregar nuevo vuelo
+                </a>
+
+
 		</div>
 
 
- <div class="col-md-5">
-                             <a class="btn btn-success btn-facebook" href="{% url 'agregar_vuelo' pk=proddet.pk %}">
-                    <i class="fa fa-plus"> </i> Agregar nuevo vuelo
-                </a>
+ <div class="col-md-7">
+                         
+
+<div class="demo-wrapper"><div id="surabaya"></div></div>
+
+
+
                         </div>
 
 
+                {% if users %}
+  <h2 class="text-center" style="padding-top: 10px; padding-bottom:10px;">Vuelos por día:</h2>
+
+<div class="row">
+{% for dia in users %}
+<div class="col-md-3">
+
+
+<div class="text-center">
+    <a  href="/ver_vuelos/{{proddet.pk}}/{{dia}}"><button type="button" class="btn btn-outline btn-success">{{dia}}</button></a></div>
+    <br>
+    </div>
+{% endfor %}
+
+    </div>
+{% endif %}
+
+
+
+
+ <div class="row">
+            <div class="col-md-12">
+
+  
+                <div class="paginationbox"> <!-- div pag -->
+                    <ul class="pagination">
+                        {% if users.has_previous %}
+                        <li>
+                            <span>
+                                <a href="?page={{ users.previous_page_number }}">Anterior</a>
+                            </span>
+                        </li>
+                        {% endif %}
+                        <li class="">
+                            <span>
+                                Pagina {{ users.number }} de {{ users.paginator.num_pages }}.
+                            </span>
+                        </li>
+                        {% if users.has_next %}
+                        <li>
+                            <span>
+                                <a href="?page={{ users.next_page_number }}">Siguiente</a>
+                            </span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div> <!-- div pag -->
+
+
+    </div>
+    </div>
+
+
+
          {% if vuelos %}
+
+           <h2 class="text-center" style="padding-top: 10px; padding-bottom:10px;">Últimos Vuelos:</h2>
                 <table border="1" cellpadding="0" cellspacing="0" style="" class="table table-bordered">
                     <tbody>
                         <thead>
@@ -78,34 +143,6 @@
                     </tbody>
                 </table>
                
-                <div class="paginationbox">
-                    <ul class="pagination">
-                        {% if page_obj.has_previous %}
-                        <li>
-                            <span>
-                                <a href="?page=1"> << Primera pagina</a>
-                            </span>
-                        </li>
-                        <li>
-                            <span><a href="?page={{ page_obj.previous_page_number }}">Anterior</a></span>
-                        </li>
-                        {% endif %}
-                        <li class="">
-                            <span>Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
-                        </li>
-                        {% if page_obj.has_next %}
-                        <li>
-                            <span><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></span>
-                        </li>
-                            <li>
-                            <span>
-                                <a href="?page={{ page_obj.paginator.num_pages }}">Ultima pagina >></a>
-                            </span>
-                        </li>
-                        {% endif %}
-
-
-	</div>
 
 </div>
 
@@ -121,4 +158,144 @@
 
 </div>
 </div>
+
+
+<style>
+
+.demo-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    height: 220px;
+}
+#surabaya {
+    width: 100%;
+    height: 200px;
+}
+
+.gm-style-iw
+{height: 123px !important; }
+
+#content1{  overflow: scroll;
+  height: 115px!important;}
+
+
+#u41956-2{
+    margin-bottom: 0px;
+    color: #FFFFFF;
+    font-family: lato, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 21px;
+}
+
+
+  </style>
+
+
+
+ <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD6kaQcsN5U-lN_geiMajt7eJRG05hAL6E"
+  type="text/javascript"></script>
+
+
+ <script>
+
+window.onload = function () {
+    
+/**
+ * Initializes the map and calls the function that creates polylines.
+ */
+
+var styles = [
+    {
+        featureType: 'water',
+        elementType: 'all',
+        stylers: [
+            { hue: '#ffffff' },
+            { saturation: -100 },
+            { lightness: 100 },
+            { visibility: 'on' }
+        ]
+    },{
+        featureType: 'landscape',
+        elementType: 'all',
+        stylers: [
+            { hue: '#E4E4E4' },
+            { saturation: -100 },
+            { lightness: 4 },
+            { visibility: 'on' }
+        ]
+    },{
+        featureType: 'poi',
+        elementType: 'all',
+        stylers: [
+            { hue: '#E4E4E4' },
+            { saturation: -100 },
+            { lightness: 52 },
+            { visibility: 'on' }
+        ]
+    },{
+        featureType: 'landscape.natural',
+        elementType: 'all',
+        stylers: [
+            { hue: '#E4E4E4' },
+            { saturation: -100 },
+            { lightness: -6 },
+            { visibility: 'on' }
+        ]
+    },{
+        featureType: 'road.local',
+        elementType: 'all',
+        stylers: [
+            { hue: '#D8D8D8' },
+            { saturation: -100 },
+            { lightness: -15 },
+            { visibility: 'on' }
+        ]
+    },{
+        featureType: 'road.highway',
+        elementType: 'all',
+        stylers: [
+            { hue: '#7A2729' },
+            { saturation: 100 },
+            { lightness: -60 },
+            { visibility: 'on' }
+        ]
+    }
+];
+
+var currentInfoWindow = null; 
+
+var options = {
+    mapTypeControlOptions: {
+        mapTypeIds: ['Styled']
+    },
+    center: new google.maps.LatLng({{ latitud }}, {{ longitud }}),
+    zoom: 17,
+    panControl: true,
+    zoomControl: true,
+    scaleControl: true,
+    disableDefaultUI: true, 
+    mapTypeId: 'Styled'
+};
+
+
+var div = document.getElementById('surabaya');
+var map = new google.maps.Map(div, options);
+var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+map.mapTypes.set('Styled', styledMapType);
+///////////
+
+
+///////////////////////
+
+}
+
+
+
+
+</script>
+
+
 {% endblock %}

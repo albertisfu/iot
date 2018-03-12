@@ -115,14 +115,14 @@ body.mini-navbar .nav-header {
 }
 
 .btn-primary {
-    background-color: #f36526;
-    border-color: #f36523;
+    background-color: #3186b7;
+    border-color: #3186b7;
     color: #FFFFFF;
 }
 
 .btn-success {
-    background-color: #f36526;
-    border-color: #f36523;
+    background-color: #3186b7;
+    border-color: #3186b7;
     color: #FFFFFF;
 }
 
@@ -131,8 +131,8 @@ body.mini-navbar .nav-header {
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
-    background-color: #ef8b5f;
-    border-color: #f36523;
+    background-color: #3186b7;
+    border-color: #3186b7;
     color: #FFFFFF;
 }
 

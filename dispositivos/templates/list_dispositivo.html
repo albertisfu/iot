@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %} Lista de Zonas {% endblock %} {% block content %}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-md-10">
-        <h2>Ver zonas</h2>
+        <h2>Ver Dispocitivos</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="/dispositivos/dispositivos/">Dispocitivos</a>
@@ -40,13 +40,16 @@
                     <tbody>
                         <thead>
                             <tr>
+                                <td><b>ID</b></td>
                                 <td><b>Nombre</b></td>
+
                                 <td><b>Ver detalles</b></td>
                                 <!--    <td><b>Eliminar producto</b></td> -->
                             </tr>
                         </thead>
                         {% for prod in object_list %}
                         <tr>
+                            <td>{{prod.ide}}</td>
                             <td>{{prod.nombre}}</td>
                             <td>
 <a href="{% url 'detalle_dispositivo' pk=prod.pk %}"><button class="btn btn-warning btn-w-m" type="button"><i class="fa fa-paste"></i> Detalles </button></a>

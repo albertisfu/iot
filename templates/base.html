@@ -74,7 +74,7 @@
                      <!-- Elemento cobro menu lateral-->
                     {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Usuario" or user.groups.all.0.name == "Pendiente" or user.is_superuser %}
                     <li id="mainop3">
-                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">DISPOCITIVOS</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">DISPOSITIVOS</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{% url 'ver_dispositivos' %}">Ver Dispositivos</a></li>
                              <li><a href="{% url 'agregar_dispositivo' %}">Agregar Dispositivo</a></li>

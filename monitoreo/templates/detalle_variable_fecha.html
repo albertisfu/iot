@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Detalle de Variable {% endblock %}
+{% block title %} Detalle de Variable por Zona y Fecha {% endblock %}
 
 {% block content %}
 {% load staticfiles %}
@@ -9,7 +9,7 @@
  <link href="{% static "css/plugins/dataTables/datatables.min.css" %}" rel="stylesheet">
 <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-md-10">
-                    <h2>Detalle de {{ variable }} del Vuelo {{ vuelo.descripcion }}</h2>
+                    <h2>Detalle de {{ variable }} de la zona {{ zona.nombre }} y fecha {{ fecha }}</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="/monitoreo/zonas/">Zonas</a>
@@ -41,10 +41,9 @@
 				<dd>{{variable}}</dd>
 				<dt>Unidad:</dt>
 				<dd>{{variable.unidad}}</dd>
-                <dt>Vuelo:</dt>
-                <dd>{{vuelo}}</dd>
+        
                 <dt>Fecha:</dt>
-                <dd>{{vuelo.fecha}}</dd>
+                <dd>{{fecha}}</dd>
 				
 			</dl>
 		</div>

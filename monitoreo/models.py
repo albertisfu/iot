@@ -33,6 +33,7 @@ class DataVuelo(models.Model):
 	longitud = models.CharField(max_length=100, blank=True, null=True)
 	altitud = models.CharField(max_length=100, blank=True, null=True)
 	vuelo = models.ForeignKey(Vuelo)
+	zona = models.ForeignKey(Zona)
 	variable = models.ForeignKey(Variable)
 	data = models.CharField(max_length=200)
 	def __unicode__(self):

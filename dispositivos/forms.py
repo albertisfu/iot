@@ -24,9 +24,10 @@ class Altadispositivo(forms.ModelForm):
     class Meta:
         model = Dispositivo
         #localized_fields = ('__all__')
-        fields = ('nombre', 'descripcion', 'usuario', 'variables')
+        fields = ('ide','nombre', 'descripcion', 'usuario', 'variables')
         labels = {
             'nombre': ('Nombre del dispositivo'),
+            'ide': ('ID'),
             }
         widgets = {
             'descripcion': forms.TextInput(),
